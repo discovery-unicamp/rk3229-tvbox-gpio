@@ -1,0 +1,14 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "rockchip,rk3229";
+    
+    fragment@0 {
+        target-path = "/gpio-leds";
+        __overlay__ {
+            status = "disabled";
+        };
+    };
+
+};

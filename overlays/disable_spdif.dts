@@ -1,0 +1,57 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "rockchip,rk3229";
+    
+    // disable /spdif@100d0000
+    fragment@0 {
+        target-path = "/spdif@100d0000";
+        __overlay__ {
+            status = "disabled";
+        };
+    };
+
+
+    // disable /spdif-out
+    fragment@1 {
+        target-path = "/spdif-out";
+        __overlay__ {
+            status = "disabled";
+        };
+    };
+
+    // disable /spdif-sound
+    fragment@2 {
+        target-path = "/spdif-sound";
+        __overlay__ {
+            status = "disabled";
+        };
+    };
+
+    // change the mode of /pinctrl/spdif/spdif-tx to GPIO (0x00) from 0x02
+    fragment@3 {
+        target-path = "/pinctrl/spdif/spdif-tx";
+        __overlay__ {
+            rockchip,pins = <0x03 0x1f 0x00 0x5b>;
+        };
+    };
+
+    // OPTIONAL: setup the pin as an LED
+    /*
+    fragment@4 {
+        target-path = "/";
+        __overlay__ {
+            spdif_gpio: spdif_gpio {
+                compatible = "gpio-leds";
+                spdif_tx_gpio {
+                    gpios = <&gpio3 31 0>;
+                    label = "spdif-tx-gpio";
+                    default-state = "off";
+                };
+            };
+        };
+    };
+    */
+
+};
